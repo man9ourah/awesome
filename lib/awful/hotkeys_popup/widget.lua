@@ -319,7 +319,8 @@ function widget.new(args)
             key = keylabel,
             keylist = {keylabel},
             mod = joined_mods,
-            description = data.description
+            description = data.description,
+            sort_order = data.sort_order or -1
         }
         local index = data.description or "none"  -- or use its hash?
         if not target[group][index] then
@@ -348,8 +349,10 @@ function widget.new(args)
                 table.sort(
                     sorted_table,
                     function(a,b)
-                        local k1, k2 = a.key or a.keys[1][1], b.key or b.keys[1][1]
-                        return (a.mod or '')..k1<(b.mod or '')..k2 end
+                        -- local k1, k2 = a.key or a.keys[1][1], b.key or b.keys[1][1]
+                        -- return (a.mod or '')..k1<(b.mod or '')..k2 end
+                        return a.sort_order < b.sort_order
+                    end
                 )
                 target[group] = sorted_table
             end
