@@ -122,7 +122,9 @@ local function update_status (self)
         -- is lower by one than the group numbers reported by xkb_get_group_names.
         local name = self._layout[self._current+1]
         if name then
-            text = " " .. name .. " "
+            -- text = " " .. name .. " "
+            text =  name
+            if text == "ara" then text = "ar" end
         end
     end
     self.widget:set_text(text)
